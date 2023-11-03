@@ -2,14 +2,12 @@ package digix.cadastro.utils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-
-import lombok.val;
 
 public class ValidadorDeCamposObrigatorios {
     
-    private List<String> erros = Collections.emptyList();
+    private List<String> erros = new ArrayList<String>();
 
     public ValidadorDeCamposObrigatorios ehNulo(Object objeto, String mensagemDeErro) {
         if(objeto == null) {
@@ -43,7 +41,7 @@ public class ValidadorDeCamposObrigatorios {
         if(!erros.isEmpty()) {
             StringBuilder mensagemFormatada = new StringBuilder();
             erros.forEach(erro -> mensagemFormatada.append(erro + "\n"));
-            throw new CampoObrigatorioViolado(mensagemFormatada.toString());
+            throw new CampoObrigatorioViolado(mensagemFormatada.toString().trim());
         }
     }
 }

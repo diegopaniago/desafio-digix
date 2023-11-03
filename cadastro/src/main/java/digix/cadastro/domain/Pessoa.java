@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import br.com.caelum.stella.validation.CPFValidator;
+import digix.cadastro.utils.CpfInvalido;
 import digix.cadastro.utils.ValidadorDeCamposObrigatorios;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +42,7 @@ public class Pessoa {
 
     public Pessoa(String nome, String cpf, LocalDate dataDeNascimento, BigDecimal renda) {
         this.validarCamposObrigatorios(nome, cpf, dataDeNascimento, renda);
+        this.validarCpf(cpf);
         this.nome = nome;
         this.cpf = cpf;
         this.dataDeNascimento = dataDeNascimento;
@@ -54,5 +57,13 @@ public class Pessoa {
             .dataEhFuturaOuInvalida(dataDeNascimento, "É obrigatório informar uma data de nascimento válida.")
             .valorEhNegativo(renda, "É obrigatório informar uma renda maior ou igual a zero.")
             .entaoDispara();
+    }
+
+    private void validarCpf(String cpf) {
+        try {
+            new CPFValidator().assertValid(cpf);
+        } catch(Exception exception) {
+            throw new CpfInvalido(cpf);
+        }
     }
 }
