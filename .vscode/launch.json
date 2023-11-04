@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CadastroApplication",
+            "request": "launch",
+            "mainClass": "digix.cadastro.CadastroApplication",
+            "projectName": "digix-desafio"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SelecaoApplication<selecao>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "digix.selecao.SelecaoApplication",
+            "projectName": "selecao",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

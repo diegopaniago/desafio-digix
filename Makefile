@@ -2,11 +2,11 @@ dependencies=docker
 $(foreach deps,$(dependencies), \
     $(if $(shell command -v $(deps)),$(info Found $(deps)),$(error Not found [ $(deps) ] in PATH)))
 
-build:
-	./mvnw clean package -DskipTests
+test: upstart
+	./mvnw test
 
-test:
-	docker compose down && docker compose up -d && ./mvnw clean test
+upstart:
+	docker compose down && docker compose up -d
 
-run: build
-	docker compose down && docker compose up -d && ./mvnw -f cadastro/pom.xml spring-boot:run
+run: upstart
+	./mvnw -f cadastro/pom.xml spring-boot:run | ./mvnw -f selecao/pom.xml spring-boot:run

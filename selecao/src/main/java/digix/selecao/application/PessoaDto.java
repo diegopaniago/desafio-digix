@@ -1,4 +1,4 @@
-package digix.cadastro.application;
+package digix.selecao.application;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class PessoaDto implements Serializable {
+public class PessoaDto implements Serializable{
     public String nome;
     public String cpf;
     public LocalDate dataDeNascimento;
