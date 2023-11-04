@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import digix.cadastro.application.ParticipanteDto;
 import digix.cadastro.application.ParticipanteServico;
 import digix.cadastro.utils.CampoObrigatorioViolado;
+import digix.cadastro.utils.CpfInvalido;
 
 @RestController
 @RequestMapping("/participante")
@@ -22,12 +23,14 @@ public class ParticipanteRest {
     @Transactional
     public ResponseEntity<Object> adicionar(ParticipanteDto participanteDto) {
         try {
-            participanteServico.adicionar(participanteDto);
-            return ResponseEntity.ok().build();
-        } catch(CampoObrigatorioViolado campoObrigatorioViolado) {
+            String id = participanteServico.adicionar(participanteDto);
+            return ResponseEntity.ok().body(id);
+        } catch (CampoObrigatorioViolado campoObrigatorioViolado) {
             return ResponseEntity.badRequest().body(campoObrigatorioViolado.getMensagemDeErro());
-        } catch(Exception exception) {
+        } catch (CpfInvalido cpfInvalido) {
+            return ResponseEntity.unprocessableEntity().body(cpfInvalido.getMensagemDeErro());
+        } catch (Exception exception) {
             return ResponseEntity.internalServerError().body(exception.getMessage());
         }
-    }    
+    }
 }

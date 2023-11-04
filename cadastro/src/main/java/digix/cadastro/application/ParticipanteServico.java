@@ -3,7 +3,6 @@ package digix.cadastro.application;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import digix.cadastro.domain.Participante;
 import digix.cadastro.domain.ParticipanteRepositorio;
@@ -11,10 +10,14 @@ import digix.cadastro.domain.Pessoa;
 
 @Service
 public class ParticipanteServico {
-    @Autowired
+
     private ParticipanteRepositorio participanteRepositorio;
 
-    public void adicionar(ParticipanteDto participanteDto) {
+    ParticipanteServico(ParticipanteRepositorio participanteRepositorio) {
+        this.participanteRepositorio = participanteRepositorio;
+    }
+
+    public String adicionar(ParticipanteDto participanteDto) {
         Pessoa titular = new Pessoa(participanteDto.titular.nome,
                 participanteDto.titular.cpf,
                 participanteDto.titular.dataDeNascimento,
@@ -26,6 +29,7 @@ public class ParticipanteServico {
             .collect(Collectors.toList());
         Participante participante = new Participante(titular, familia);
         participanteRepositorio.save(participante);
+        return participante.getId();
     }
 
     private Pessoa criarPessoa(PessoaDto pessoaDto) {
