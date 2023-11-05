@@ -1,5 +1,6 @@
 package digix.selecao.application;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,12 @@ public class SelecaoServico {
 
     public List<SelecaoDto> obterRanking() {
         List<Selecao> selecionados = selecaoRepositorio.findAll();
+        List<SelecaoDto> selecionadosDtos = criarSelecionadosDtos(selecionados);
+        ordenarSelecionados(selecionadosDtos);
+        return selecionadosDtos;
+    }
+
+    private List<SelecaoDto> criarSelecionadosDtos(List<Selecao> selecionados) {
         List<SelecaoDto> selecionadosDtos = selecionados
                 .stream()
                 .map(selecionado -> {
@@ -40,14 +47,22 @@ public class SelecaoServico {
                                     criterio.getPontosObtidos()))
                             .collect(Collectors.toList());
                     Integer totalDePontos = selecionado
-                        .getCriteriosSelecionados()
-                        .stream()
-                        .map(CriterioSelecionado::getPontosObtidos)
-                        .reduce(0, (subtotal, elemento) -> subtotal + elemento);
+                            .getCriteriosSelecionados()
+                            .stream()
+                            .map(CriterioSelecionado::getPontosObtidos)
+                            .reduce(0, (subtotal, elemento) -> subtotal + elemento);
                     return new SelecaoDto(selecionado.getParticipanteId(), 0, totalDePontos, criterios);
                 })
                 .collect(Collectors.toList());
+
         return selecionadosDtos;
+    }
+
+    private void ordenarSelecionados(List<SelecaoDto> selecionadosDtos) {
+        selecionadosDtos.sort(Comparator.comparing(SelecaoDto::getTotalDePontos).reversed());
+        for (int i = 0; i < selecionadosDtos.size(); i++) {
+            selecionadosDtos.get(i).posicao = i + 1;
+        }
     }
 
 }

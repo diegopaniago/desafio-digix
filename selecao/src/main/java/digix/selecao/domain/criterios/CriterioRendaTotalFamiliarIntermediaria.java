@@ -11,8 +11,8 @@ import digix.selecao.domain.CriterioSelecionado;
 public class CriterioRendaTotalFamiliarIntermediaria implements Criterio {
     private static final String NOME = "Renda total familiar intermediaria.";
     private static final Integer PONTOS = 3;
-    private static final BigDecimal RENDA_FAMILIAR_MINIMA_PERMITIDA = BigDecimal.valueOf(901);
-    private static final BigDecimal RENDA_FAMILIAR_MAXIMA_PERMITIDA = BigDecimal.valueOf(1500);
+    public static final BigDecimal RENDA_FAMILIAR_MINIMA_PERMITIDA = BigDecimal.valueOf(901);
+    public static final BigDecimal RENDA_FAMILIAR_MAXIMA_PERMITIDA = BigDecimal.valueOf(1500);
 
     @Override
     public CriterioSelecionado avaliar(ParticipanteDto participanteDto) {

@@ -9,7 +9,7 @@ import digix.selecao.domain.CriterioSelecionado;
 
 @Component
 public class CriterioRendaTotalFamiliar implements Criterio {
-    private static final String NOME = "Renda total familiar.";
+    private static final String NOME = "Renda total familiar minima.";
     private static final Integer PONTOS = 5;
     private static final BigDecimal RENDA_FAMILIAR_MAXIMA_PERMITIDA = BigDecimal.valueOf(900);
 
