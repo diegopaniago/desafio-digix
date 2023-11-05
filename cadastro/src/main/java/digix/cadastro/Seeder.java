@@ -37,7 +37,7 @@ public class Seeder {
         if (!deveRodarOSeeder) {
             return;
         }
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 100; i++) {
             Participante participante = new ParticipanteBuilder().criar();
             PessoaDto titularDto = criarPessoaDto(participante.getTitular());
             List<PessoaDto> familiaDto = participante

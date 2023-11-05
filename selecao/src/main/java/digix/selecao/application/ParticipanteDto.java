@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ParticipanteDto implements Serializable {
+    public String id;
     public PessoaDto titular;
     public List<PessoaDto> familia;
 }

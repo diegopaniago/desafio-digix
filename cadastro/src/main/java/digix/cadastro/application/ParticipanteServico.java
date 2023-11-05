@@ -34,6 +34,7 @@ public class ParticipanteServico {
             .collect(Collectors.toList());
         Participante participante = new Participante(titular, familia);
         participanteRepositorio.save(participante);
+        participanteDto.id = participante.getId();
         ParticipanteInscrito participanteInscrito = new ParticipanteInscrito(this, participanteDto);
         applicationEventPublisher.publishEvent(participanteInscrito);
         return participante.getId();
