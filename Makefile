@@ -8,5 +8,8 @@ test: upstart
 upstart:
 	docker compose down && docker compose up -d
 
+build: upstart
+	./mvnw package
+
 run: upstart
 	./mvnw -f cadastro/pom.xml spring-boot:run | ./mvnw -f selecao/pom.xml spring-boot:run
