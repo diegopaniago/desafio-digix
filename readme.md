@@ -10,15 +10,15 @@ Tenha instalado:<br/>
 ## Como executar
 Execute:
 1. Baixar as dependencias do docker e do maven
-```
+```bash
 make
 ```
 2. Testar
-```
+```bash
 make test
 ```
 3. Executar
-```
+```bash
 make run
 ```
 Esse projeto executa automaticamente um seeder com 100 inscritos totalmente aleatórios. Caso queria desativar o seeder mude a flag `seeder` no arquivo de [properties](./cadastro/src/main/resources/application.properties) do modulo de cadastro.
@@ -26,7 +26,31 @@ Esse projeto executa automaticamente um seeder com 100 inscritos totalmente alea
 ## Api
 Para testar as APIs é possível usar o Swagger.
 - [Cadastro](http://localhost:8085/swagger-ui/index.html)
-- [Selecao](http://localhost:8086/swagger-ui/index.html)
+- [Selecao](http://localhost:8086/swagger-ui/index.html)<br/>
+Payload base para facilitar o uso do cadastro:
+```json
+{
+  "id": "",
+  "titular": {
+    "nome": "Diego Paniago",
+    "cpf": "03464998100",
+    "dataDeNascimento": "1992-04-28",
+    "renda": 50000
+  },
+  "familia": [
+    {
+      "nome": "Caue Paniago",
+      "cpf": "03464998100",
+      "dataDeNascimento": "2023-11-05",
+      "renda": 0
+    }
+  ]
+}
+```
+
+## Acesso as dependencias
+- Postgres jdbc:postgresql://localhost:5432/postgres | usuário e senha: postgres
+- RabbitMq http://localhost:15672/ | usuário e senha: guest
 
 ## Arquitetura
 Esse projeto possui uma arquitetura distribuida baseada em 2 contextos.
