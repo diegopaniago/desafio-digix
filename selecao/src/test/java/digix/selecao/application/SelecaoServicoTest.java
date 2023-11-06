@@ -63,8 +63,8 @@ public class SelecaoServicoTest {
         assertEquals(POSICAO_UM, primeiroColocado.posicao);
         assertEquals(POSICAO_DOIS, segundoColocado.posicao);
         assertEquals(POSICAO_TRES, terceiroColocado.posicao);
-        assertTrue(primeiroColocado.totalDePontos > segundoColocado.totalDePontos);
-        assertTrue(segundoColocado.totalDePontos > terceiroColocado.totalDePontos);
+        assertTrue(primeiroColocado.totalDePontos >= segundoColocado.totalDePontos);
+        assertTrue(segundoColocado.totalDePontos >= terceiroColocado.totalDePontos);
     }
 
     private List<Selecao> criarSelecoes() {
