@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import digix.selecao.domain.CriterioSelecionado;
 import digix.selecao.domain.Selecao;
 import digix.selecao.domain.SelecaoRepositorio;
 import digix.selecao.domain.Selecionador;
@@ -46,11 +45,7 @@ public class SelecaoServico {
                             .map(criterio -> new CriterioSelecionadoDto(criterio.getNome(),
                                     criterio.getPontosObtidos()))
                             .collect(Collectors.toList());
-                    Integer totalDePontos = selecionado
-                            .getCriteriosSelecionados()
-                            .stream()
-                            .map(CriterioSelecionado::getPontosObtidos)
-                            .reduce(0, (subtotal, elemento) -> subtotal + elemento);
+                    Integer totalDePontos = selecionado.obterTotalDePontos();
                     return new SelecaoDto(selecionado.getParticipanteId(), 0, totalDePontos, criterios);
                 })
                 .collect(Collectors.toList());

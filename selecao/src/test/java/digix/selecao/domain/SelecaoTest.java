@@ -60,4 +60,17 @@ public class SelecaoTest {
 
         assertEquals(erroEsperado, erro.getMensagemDeErro());
     }
+
+    @Test
+    public void deve_obter_total_de_pontos() {
+        String participanteId = UUID.randomUUID().toString();
+        String nomeDoCriterio = faker.harryPotter().spell();
+        Integer pontosObtidos = faker.number().numberBetween(0, 10);
+        CriterioSelecionado criterio = new CriterioSelecionado(nomeDoCriterio, pontosObtidos);
+        List<CriterioSelecionado> criterios = Arrays.asList(criterio);
+
+        Selecao selecao = new Selecao(participanteId, criterios);
+
+        assertEquals(pontosObtidos, selecao.obterTotalDePontos());
+    }
 }

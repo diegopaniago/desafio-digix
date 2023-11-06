@@ -39,9 +39,16 @@ public class Selecao {
     private void validarCamposObrigatorios(String participanteId, List<CriterioSelecionado> criteriosSelecionados) {
         ValidadorDeCamposObrigatorios validadorDeCamposObrigatorios = new ValidadorDeCamposObrigatorios();
         validadorDeCamposObrigatorios
-            .textoEhVazio(participanteId, "É obrigatório informar o participante.")
-            .listaEhVazia(criteriosSelecionados, "É obrigatório informar os criterios da seleção.")
-            .entaoDispara();
+                .textoEhVazio(participanteId, "É obrigatório informar o participante.")
+                .listaEhVazia(criteriosSelecionados, "É obrigatório informar os criterios da seleção.")
+                .entaoDispara();
+    }
+
+    public Integer obterTotalDePontos() {
+        return criteriosSelecionados
+                .stream()
+                .map(CriterioSelecionado::getPontosObtidos)
+                .reduce(0, (subtotal, elemento) -> subtotal + elemento);
     }
 
 }
