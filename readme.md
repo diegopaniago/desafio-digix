@@ -55,7 +55,7 @@ Payload base para facilitar o uso do cadastro:
 ## Arquitetura
 Esse projeto possui uma arquitetura distribuida baseada em 2 contextos.
 - Contexto de cadastro: Usando uma arquitetura hexagonal dada a diversidade de protocolos do projeto(http, jdbc e amqp) é focado em manter os dados de cadastro dos incritos.
-- Contexto de selecão: Usando uma arquitetura hexagonal dada a diversidade de protocolos do projeto(http, jdbc e amqp) é focado em manter os dados pré-processados sempre que um novo inscrito é cadastrado no modulo de cadastro. O pré-processamento da seleção é feito de maneiro assincrona usando RabbitMq.
+- Contexto de selecão: Usando uma arquitetura hexagonal dada a diversidade de protocolos do projeto(http, jdbc e amqp) é focado em manter os dados pré-processados sempre que um novo inscrito é cadastrado no modulo de cadastro. O pré-processamento da seleção é feito de maneira assincrona usando RabbitMq.
 - [Diagrama da arquitetura](https://drive.google.com/file/d/13PCPL_RVByoIiZtCk5v9Glv2VRQSm7GU/view?usp=sharing)
 
 ## Deploy
@@ -64,6 +64,6 @@ Esse projeto possui uma arquitetura distribuida baseada em 2 contextos.
 
 ## Próximos passos
 - [ ] Adicionar monitoria(APM) com Sentry
-- [ ] Adicionar Logs com Elactic e Kibana
+- [ ] Adicionar Logs com Elastic e Kibana
 - [ ] Implementar autenticação com JWT
 - [ ] Implementar auditoria
