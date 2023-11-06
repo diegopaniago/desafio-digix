@@ -1,4 +1,4 @@
-# Desafio Digix
+# Desafio Digix [![CI](https://github.com/diegopaniago/desafio-digix/actions/workflows/ci.yml/badge.svg)](https://github.com/diegopaniago/desafio-digix/actions/workflows/ci.yml)
 ### Seleção de famílias aptas a ganharem uma casa popular
 
 ## Requisitos
