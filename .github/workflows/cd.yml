@@ -28,6 +28,6 @@ jobs:
       run: cd cadastro && docker build .
 
     - name: Build selecao docker image
-      run: cd .. && cd cadastro && docker build .
+      run: cd selecao && docker build .
     
     # Aqui ficaria o push para o registry e em seguida o deploy para alguma infra
