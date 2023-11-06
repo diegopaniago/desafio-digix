@@ -21,7 +21,12 @@ make test
 ```
 make run
 ```
-Esse projeto executa automaticamente um seeder com 100 inscritos totalmente aleatórios. Caso queria desativar o seeder mude a flag no arquivo de [properties](./cadastro/src/main/resources/application.properties) do modulo de cadastro.
+Esse projeto executa automaticamente um seeder com 100 inscritos totalmente aleatórios. Caso queria desativar o seeder mude a flag `seeder` no arquivo de [properties](./cadastro/src/main/resources/application.properties) do modulo de cadastro.
+
+## Api
+Para testar as APIs é possível usar o Swagger.
+- [Cadastro](http://localhost:8085/swagger-ui/index.html)
+- [Selecao](http://localhost:8086/swagger-ui/index.html)
 
 ## Arquitetura
 Esse projeto possui uma arquitetura distribuida baseada em 2 contextos.
@@ -29,6 +34,9 @@ Esse projeto possui uma arquitetura distribuida baseada em 2 contextos.
 - Contexto de selecão: Usando uma arquitetura hexagonal dada a diversidade de protocolos do projeto(http, jdbc e amqp) é focado em manter os dados pré-processados sempre que um novo inscrito é cadastrado no modulo de cadastro. O pré-processamento da seleção é feito de maneiro assincrona usando RabbitMq.
 - [Diagrama da arquitetura](https://drive.google.com/file/d/13PCPL_RVByoIiZtCk5v9Glv2VRQSm7GU/view?usp=sharing)
 
+## Deploy
+- Para realizar o deploy basta criar uma [nova release](https://github.com/diegopaniago/desafio-digix/releases/new).
+- Respeite o versionamento de tags Ex.: v0.0.0
 
 ## Próximos passos
 - [ ] Adicionar monitoria(APM) com Sentry
